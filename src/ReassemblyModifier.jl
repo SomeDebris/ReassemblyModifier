@@ -27,12 +27,13 @@ function features_append!(block, add_features)
     else
         block[ FEATURES_KEY ].append!( add_features )
     end
-    nothing
+    return nothing
 end
 
 function features_remove!(block, remove_features)
     if !haskey( block, FEATURES_KEY )
         error("Block has no features to remove!")
+        return nothing
     end
 
     if block[ FEATURES_KEY ] isa Array
@@ -41,7 +42,7 @@ function features_remove!(block, remove_features)
     elseif ( block[ FEATURES_KEY ] in remove_features )
         delete!( block, FEATURES_KEY )
     end
-    nothing
+    return nothing
 end
 
 
