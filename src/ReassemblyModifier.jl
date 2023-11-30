@@ -13,6 +13,9 @@ module ReassemblyModifier
 # field_modify_add!
 # field_modify_set!
 const FEATURES_KEY = "features"
+const POINTS_KEY = "points"
+const FACTION_KEY = "group"
+const ID_KEY = "ident"
 
 function features_set!(block, set_features)
     block[ FEATURES_KEY ] = set_features
@@ -50,5 +53,38 @@ function features_remove!(block, remove_features)
 
     return nothing
 end
+
+function blocks_from_faction(blocks, faction)
+    output = []
+
+    for block in blocks
+        if block[ FACTION_KEY ] == faction
+            append!(block, output)
+        end
+    end
+
+    return output
+end
+
+function blocks_from_id(blocks, range_id)
+    output = []
+
+    for block in blocks
+        if ( block[ ID_KEY ] in range_id )
+            append!( output, block )
+        end
+    end
+end
+
+function blocks_from_key(blocks, key, range)
+    output = []
+
+    for block in blocks
+        if ( block[ key ] in range )
+            append!( output, block )
+        end
+    end
+end
+
 
 end
