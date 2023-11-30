@@ -28,5 +28,14 @@ function features_append!(block, add_features)
     nothing
 end
 
+function features_remove!(block, remove_features)
+    if haskey( block, FEATURES_KEY )
+        filter!( e -> !(e in remove_features), block[ FEATURES_KEY ] )
+    else
+        error("Block has no features to remove!")
+    end
+    nothing
+end
+
 
 end
