@@ -3,6 +3,9 @@ uuid = "5c6fc2ef-bd28-461b-aab5-8d5bbc7b7e55"
 authors = ["Magnus Ramsey"]
 version = "1.0.0-DEV"
 
+[deps]
+JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
+
 [compat]
 julia = "1"
 
