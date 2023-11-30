@@ -59,7 +59,7 @@ function blocks_from_faction(blocks, faction)
 
     for block in blocks
         if ( block[ FACTION_KEY ] in faction )
-            append!( output, block )
+            push!( output, block )
         end
     end
 
@@ -71,7 +71,7 @@ function blocks_from_id(blocks, range_id)
 
     for block in blocks
         if ( block[ ID_KEY ] in range_id )
-            append!( output, block )
+            push!( output, block )
         end
     end
 end
@@ -81,7 +81,7 @@ function blocks_from_key(blocks, key, range)
 
     for block in blocks
         if ( block[ key ] in range )
-            append!( output, block )
+            push!( output, block )
         end
     end
 end
