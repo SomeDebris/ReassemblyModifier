@@ -20,19 +20,26 @@ function features_set!(block, set_features)
 end
 
 function features_append!(block, add_features)
-    if haskey( block, FEATURES_KEY )
-        block[ FEATURES_KEY ].append!( add_features )
-    else
+    if !haskey( block, FEATURES_KEY )
         block[ FEATURES_KEY ] = add_features
+    elseif ( length( block[ FEATURES_KEY ] ) != 0 )
+        block[ FEATURES_KEY ] = add_features
+    else
+        block[ FEATURES_KEY ].append!( add_features )
     end
     nothing
 end
 
 function features_remove!(block, remove_features)
-    if haskey( block, FEATURES_KEY )
-        filter!( e -> !(e in remove_features), block[ FEATURES_KEY ] )
-    else
+    if !haskey( block, FEATURES_KEY )
         error("Block has no features to remove!")
+    end
+
+    if block[ FEATURES_KEY ] isa Array
+        filter!( e -> !(e in remove_features), block[ FEATURES_KEY ] )
+        display(length(block[ FEATURES_KEY ] ) )
+    elseif ( block[ FEATURES_KEY ] in remove_features )
+        delete!( block, FEATURES_KEY )
     end
     nothing
 end
