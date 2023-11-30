@@ -22,17 +22,23 @@ end
 function features_append!(block, add_features)
     if !haskey( block, FEATURES_KEY )
         block[ FEATURES_KEY ] = add_features
-    elseif ( length( block[ FEATURES_KEY ] ) == 0 )
-        block[ FEATURES_KEY ] = add_features
-    else
-        append!( block[ FEATURES_KEY ], add_features )
+
+        return nothing
     end
+
+    if !( block[ FEATURES_KEY ] isa Array )
+        block[ FEATURES_KEY ] = [ block[ FEATURES_KEY ] ]
+    end
+
+    append!( block[ FEATURES_KEY ], add_features )
+
     return nothing
 end
 
 function features_remove!(block, remove_features)
     if !haskey( block, FEATURES_KEY )
         error("Block has no features to remove!")
+
         return nothing
     end
 
@@ -41,6 +47,7 @@ function features_remove!(block, remove_features)
     elseif ( block[ FEATURES_KEY ] in remove_features )
         delete!( block, FEATURES_KEY )
     end
+
     return nothing
 end
 
