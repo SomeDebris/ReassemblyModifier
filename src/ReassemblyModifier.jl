@@ -12,10 +12,19 @@ module ReassemblyModifier
 # field_modify_multiply!
 # field_modify_add!
 # field_modify_set!
+const FEATURES_KEY = "features"
 
-function features_modify_set!(block, set_features)
-    features_key = "features"
-    block[ features_key ] = set_features
+function features_set!(block, set_features)
+    block[ FEATURES_KEY ] = set_features
+    nothing
+end
+
+function features_add!(block, add_features)
+    if haskey( block, FEATURES_KEY )
+        block[ FEATURES_KEY ].append!( add_features )
+    else
+        block[ FEATURES_KEY ] = add_features
+    end
     nothing
 end
 
