@@ -58,7 +58,7 @@ function blocks_from_faction(blocks, faction)
     output = []
 
     for block in blocks
-        if block[ FACTION_KEY ] == faction
+        if ( block[ FACTION_KEY ] in faction )
             append!(block, output)
         end
     end
